@@ -1,0 +1,131 @@
+@import "../../styles/variables.css";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  background-color: var(--bg-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  position: relative;
+  color: var(--text-color);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--text-color);
+}
+
+.navigationBar {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+  text-decoration: solid;
+}
+
+.navItem {
+  color: var(--text-color);
+}
+
+.loginWrapper {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.loginButton,
+.registerButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  background-color: white;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+}
+
+.registerButton {
+  color: var(--color-primary-2);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  z-index: 1001;
+}
+
+.hamburgerLine {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: 0.4s;
+  transform-origin: center;
+}
+
+.hamburger.open .hamburgerLine:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.open .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .hamburgerLine:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-color);
+  flex-direction: column;
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .navigationBar,
+  .loginWrapper {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

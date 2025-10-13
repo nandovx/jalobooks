@@ -1,0 +1,51 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.borrowButton,
+.returnButton,
+.reserveButton,
+.cancelButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.borrowButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.returnButton {
+  background-color: #ffc107;
+  color: black;
+}
+
+.reserveButton {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.cancelButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.statusDropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.statusDropdown label {
+  font-weight: bold;
+}
+
+.statusDropdown select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
