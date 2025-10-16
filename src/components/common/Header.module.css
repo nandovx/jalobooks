@@ -34,11 +34,7 @@ h1 {
   display: flex;
   gap: var(--spacing-lg);
   align-items: center;
-  text-decoration: solid;
-}
-
-.navItem {
-  color: var(--text-color);
+  text-decoration: none;
 }
 
 .loginWrapper {

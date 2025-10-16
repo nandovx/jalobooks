@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppSelector } from "../store/hooks";
-import type { Book } from "../types";
+import type { Book } from "../types/book";
 
 export const useBookSearch = () => {
   const [query, setQuery] = useState("");

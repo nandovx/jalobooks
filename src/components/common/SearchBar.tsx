@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./SearchBar.module.css";
 
 interface SearchBarProps {
   query: string;
@@ -20,39 +21,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery }) => {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        padding: "10px",
-        marginBottom: "20px",
-        display: "flex",
-        gap: "10px",
-      }}
-    >
+    <div className={styles.searchContainer}>
       <input
         type="text"
         placeholder="Search books..."
         value={inputValue}
         onChange={handleInputChange}
         aria-label="Search for books"
-        style={{
-          flex: 1,
-          padding: "10px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
+        className={styles.searchInput}
       />
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: "10px 15px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
+      <button onClick={handleSearch} className={styles.searchButton}>
         Search
       </button>
     </div>

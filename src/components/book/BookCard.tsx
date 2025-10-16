@@ -5,11 +5,12 @@ import { updateBook } from "../../store/bookSlice";
 import { useUserLoans } from "../../hooks/useUserLoans";
 import { useUserReservations } from "../../hooks/useUserReservations";
 import { useUserReadingStatus } from "../../hooks/useUserReadingStatus";
-import type { Book } from "../../types";
+import type { Book } from "../../types/book"
+import styles from "./BookCard.module.css";
 
 interface Props {
   book: Book;
-  context: "loan" | "reservation" | "wishlist";
+  context?: "loan" | "reservation" | "wishlist";
 }
 
 const BookCard: React.FC<Props> = ({ book, context }) => {
@@ -25,7 +26,7 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
   const image =
     book.formats["image/jpeg"] ||
     book.formats["image/png"] ||
-    "https://placehold.co/128  ";
+    "https://placehold.co/128";
 
   const handleReturn = () => {
     returnBook(book.id);
@@ -48,61 +49,24 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "10px",
-        textAlign: "center",
-        backgroundColor: "#fff",
-        position: "relative",
-      }}
-    >
-      <img
-        src={image}
-        alt={title}
-        style={{ width: "100%", height: "auto", borderRadius: "4px" }}
-      />
-      <h3 style={{ margin: "10px 0" }}>{title}</h3>
-      <p style={{ margin: "5px 0", color: "#555" }}>{authors}</p>
+    <div className={styles.card}>
+      <img src={image} alt={title} className={styles.image} />
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.author}>{authors}</p>
 
-      <Link
-        to={`/book/${book.id}`}
-        style={{
-          color: "#007bff",
-          textDecoration: "none",
-          display: "block",
-          marginBottom: "10px",
-        }}
-      >
+      <Link to={`/book/${book.id}`} className={styles.link}>
         Ver detalhes
       </Link>
 
-      {/* Botões condicionais com base no contexto */}
       {context === "loan" && (
-        <button
-          onClick={handleReturn}
-          style={{
-            padding: "5px 10px",
-            backgroundColor: "#dc3545",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-          }}
-        >
+        <button onClick={handleReturn} className={styles.returnButton}>
           Devolver
         </button>
       )}
       {context === "reservation" && (
         <button
           onClick={handleCancelReservation}
-          style={{
-            padding: "5px 10px",
-            backgroundColor: "#ffc107",
-            color: "black",
-            border: "none",
-            borderRadius: "4px",
-          }}
+          className={styles.cancelButton}
         >
           Cancelar Reserva
         </button>
@@ -110,13 +74,7 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
       {context === "wishlist" && (
         <button
           onClick={handleRemoveFromWishlist}
-          style={{
-            padding: "5px 10px",
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-          }}
+          className={styles.removeButton}
         >
           Remover
         </button>

@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { addReservation, removeReservation } from "../store/loanSlice";
-import type { Reservation } from "../types";
+import type { Reservation } from "../types/reservation";
 
 export const useUserReservations = () => {
   const dispatch = useAppDispatch();

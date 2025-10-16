@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks"; // Novo hook
-import { loginSuccess } from "../../store/userSlice"; // Nova action
+import { useAppDispatch } from "../../store/hooks";
+import { loginSuccess } from "../../store/userSlice";
+import { auth } from "../../services/authService";
 import styles from "./LoginForm.module.css";
-import type { User } from "../../types";
 
 interface LoginFormData {
   username: string;
@@ -16,7 +16,7 @@ const LoginForm: React.FC = () => {
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-  const dispatch = useAppDispatch(); // Novo dispatch
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,20 +27,13 @@ const LoginForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const storedUsers = localStorage.getItem("users");
-    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
-
-    const user = users.find(
-      (u) =>
-        u.username === formData.username && u.password === formData.password
-    );
+    const user = auth.login(formData.username, formData.password);
 
     if (user) {
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      dispatch(loginSuccess(user)); // Despacha a action de login
+      dispatch(loginSuccess(user));
       navigate("/");
     } else {
-      setError("Usuário ou senha inválidos");
+      setError("Invalid username or password");
     }
   };
 
@@ -49,7 +42,7 @@ const LoginForm: React.FC = () => {
       <h2>Login</h2>
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.inputGroup}>
-        <label htmlFor="username">Usuário</label>
+        <label htmlFor="username">User</label>
         <input
           id="username"
           name="username"
@@ -60,7 +53,7 @@ const LoginForm: React.FC = () => {
         />
       </div>
       <div className={styles.inputGroup}>
-        <label htmlFor="password">Senha</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           name="password"
@@ -71,7 +64,7 @@ const LoginForm: React.FC = () => {
         />
       </div>
       <button type="submit" className={styles.button}>
-        Entrar
+        Enter
       </button>
     </form>
   );

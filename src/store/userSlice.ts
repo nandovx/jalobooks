@@ -1,26 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-
-import type { User } from "../types";
-
-// Função para obter o usuário do localStorage
-const getCurrentUserFromStorage = (): User | null => {
-  const stored = localStorage.getItem("currentUser");
-  return stored ? JSON.parse(stored) : null;
-};
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { auth } from "../services/authService";
+import type { User } from "../types/user";
 
 interface UserState {
   currentUser: User | null;
   isAuthenticated: boolean;
 }
 
-const initialState: UserState = (() => {
-  const user = getCurrentUserFromStorage();
+const loadInitialState = (): UserState => {
+  const user = auth.getCurrentUser();
   return {
     currentUser: user,
     isAuthenticated: !!user,
   };
-})();
+};
+
+const initialState: UserState = loadInitialState();
 
 const userSlice = createSlice({
   name: "user",
@@ -38,5 +33,4 @@ const userSlice = createSlice({
 });
 
 export const { loginSuccess, logout } = userSlice.actions;
-
 export default userSlice.reducer;

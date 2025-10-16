@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../store/hooks"; // Novo hook
-import { logout } from "../../store/userSlice"; // Nova action
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { logout } from "../../store/userSlice";
 import { FaHome, FaUser, FaUserPlus } from "react-icons/fa";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated } = useAppSelector((state) => state.user); // Novo estado
-  const dispatch = useAppDispatch(); // Novo dispatch
+  const { isAuthenticated } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -16,8 +16,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    dispatch(logout()); // Despacha a action de logout
-    localStorage.removeItem("currentUser");
+    dispatch(logout());
     navigate("/");
   };
 
@@ -32,7 +31,7 @@ const Header = () => {
         <h1>BookJalo</h1>
       </div>
 
-      {/* Botão do Menu Hambúrguer com animação */}
+      {/* Botão do Menu Hambúrguer */}
       <div
         className={`${styles.hamburger} ${isMenuOpen ? styles.open : ""}`}
         onClick={toggleMenu}

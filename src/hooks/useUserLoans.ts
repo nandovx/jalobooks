@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { addLoan, removeLoan } from "../store/loanSlice";
-import type { Loan } from "../types";
+import type { Loan } from "../types/loan";
 
 export const useUserLoans = () => {
   const dispatch = useAppDispatch();

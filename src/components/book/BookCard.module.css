@@ -1,0 +1,43 @@
+@import "../../styles/variables.css";
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  text-align: center;
+  background-color: var(--color-secondary-1);
+  position: relative;
+  transition: box-shadow var(--shadow) 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
+.title {
+  margin: var(--spacing-md) 0;
+  font-size: var(--font-size-large);
+  color: var(--text-color);
+}
+
+.author {
+  margin: var(--spacing-sm) 0;
+  color: var(--text-light);
+}
+
+.link {
+  color: var(--color-primary-1);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--spacing-md);
+}
+
+.link:hover {
+  text-decoration: underline;
+}

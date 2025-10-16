@@ -3,7 +3,10 @@ import styles from "./Footer.module.css";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>© 2024 BookJalo. All rights reserved.</p>
+      <p>
+        © {new Date().getFullYear()} BookJalo - University Library. All rights
+        reserved.
+      </p>
     </footer>
   );
 };

@@ -1,39 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { searchBooks } from "../services/bookService";
-import type { Book } from "../types";
+import { getBooks, updateBooks } from "../services/bookService";
+import type { Book } from "../types/book";
 
-const BOOKS_KEY = "books";
+export const loadBooks = createAsyncThunk("books/load", async () => {
+  const data = await getBooks("", "popular");
+  return data;
+});
 
-// ✅ Action para carregar livros do localStorage
-export const loadBooksFromStorage = createAsyncThunk(
-  "books/loadFromStorage",
-  async () => {
-    const saved = localStorage.getItem(BOOKS_KEY);
-    if (saved) {
-      return JSON.parse(saved);
-    }
+interface BookState {
+  items: Book[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
 
-    // Se não tiver no localStorage, buscar da API e salvar
-    const data = await searchBooks("", "popular");
-    const booksWithDefaults = data.map((book: Book) => ({
-      ...book,
-      borrowed: book.borrowed ?? false,
-    }));
-
-    localStorage.setItem(BOOKS_KEY, JSON.stringify(booksWithDefaults));
-    return booksWithDefaults;
-  }
-);
+const initialState: BookState = {
+  items: [],
+  status: "idle",
+  error: null,
+};
 
 const bookSlice = createSlice({
   name: "books",
-  initialState: {
-    items: [] as Book[],
-    status: "idle",
-    error: null as string | null,
-  },
+  initialState,
   reducers: {
     updateBook: (state, action: PayloadAction<Book>) => {
       const index = state.items.findIndex(
@@ -42,24 +32,23 @@ const bookSlice = createSlice({
       if (index !== -1) {
         state.items[index] = action.payload;
 
-        // ✅ Sincroniza com o localStorage
         const updatedBooks = state.items.map((book) =>
           book.id === action.payload.id ? action.payload : book
         );
-        localStorage.setItem(BOOKS_KEY, JSON.stringify(updatedBooks));
+        updateBooks(updatedBooks);
       }
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loadBooksFromStorage.pending, (state) => {
+      .addCase(loadBooks.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(loadBooksFromStorage.fulfilled, (state, action) => {
+      .addCase(loadBooks.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.items = action.payload;
       })
-      .addCase(loadBooksFromStorage.rejected, (state, action) => {
+      .addCase(loadBooks.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Erro ao carregar livros";
       });

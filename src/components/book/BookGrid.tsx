@@ -1,6 +1,7 @@
 import React from "react";
-import type { Book } from "../../types";
+import type { Book } from "../../types/book";
 import BookCard from "./BookCard";
+import styles from "./BookGrid.module.css";
 
 interface BookGridProps {
   title: string;
@@ -9,15 +10,9 @@ interface BookGridProps {
 
 const BookGrid: React.FC<BookGridProps> = ({ title, books }) => {
   return (
-    <section style={{ marginBottom: "2rem" }}>
-      <h2>{title}</h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
-      >
+    <section className={styles.gridContainer}>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.grid}>
         {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}

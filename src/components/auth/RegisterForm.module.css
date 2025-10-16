@@ -1,45 +1,51 @@
+@import "../../styles/variables.css";
+
 .form {
   display: flex;
   flex-direction: column;
   max-width: 400px;
   margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  padding: var(--spacing-xl);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color);
 }
 
 .inputGroup {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .inputGroup label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-xs);
   font-weight: bold;
+  color: var(--text-color);
 }
 
 .inputGroup input {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--color-secondary-1);
+  color: var(--text-color);
+  max-width: fit-content;
 }
 
 .button {
-  padding: 0.75rem;
-  background-color: #28a745;
-  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-success);
+  color: var(--color-secondary-1);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: #218838;
+  background-color: var(--color-success);
 }
 
 .error {
-  color: red;
-  margin-bottom: 1rem;
+  color: var(--color-danger);
+  margin-bottom: var(--spacing-md);
 }

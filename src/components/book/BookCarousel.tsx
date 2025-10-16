@@ -1,6 +1,7 @@
 import React from "react";
 import BookCard from "./BookCard";
-import type { Book } from "../../types";
+import type { Book } from "../../types/book";
+import styles from "./BookCarousel.module.css";
 
 interface Props {
   books: Book[];
@@ -11,28 +12,19 @@ interface Props {
 const BookCarousel: React.FC<Props> = ({ books, context, title }) => {
   if (books.length === 0) {
     return (
-      <div style={{ marginBottom: "30px" }}>
-        <h2>{title}</h2>
-        <p>Você não tem livros.</p>
+      <div className={styles.carouselContainer}>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.noBooks}>Você não tem livros.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ marginBottom: "30px" }}>
-      <h2>{title}</h2>
-      <div
-        style={{
-          display: "flex",
-          overflowX: "auto",
-          gap: "20px",
-          padding: "10px 0",
-          scrollbarWidth: "thin", // Para Firefox
-        }}
-        className="carousel"
-      >
+    <div className={styles.carouselContainer}>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.carousel}>
         {books.map((book) => (
-          <div key={book.id} style={{ flex: "0 0 auto", width: "200px" }}>
+          <div key={book.id} className={styles.carouselItem}>
             <BookCard book={book} context={context} />
           </div>
         ))}

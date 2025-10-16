@@ -37,12 +37,10 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
     (res) => res.bookId === book.id && res.userId === currentUser.id
   );
 
-  // Verificar se o livro está reservado por **alguém**
   const isReservedBySomeone = reservations.some(
     (res) => res.bookId === book.id
   );
 
-  // Verificar se o usuário logado está na **frente da fila de reserva**
   const isNextInQueue = () => {
     const sortedReservations = [...reservations]
       .filter((res) => res.bookId === book.id)
@@ -54,7 +52,6 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
     return sortedReservations[0]?.userId === currentUser.id;
   };
 
-  // Verificar o status atual do livro para o usuário
   const currentReadingStatus = status.find(
     (s) => s.bookId === book.id && s.userId === currentUser.id
   )?.status;
@@ -116,8 +113,7 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
     newStatus: "reading" | "completed" | "wishlist"
   ) => {
     if (currentReadingStatus === newStatus) {
-      // Se o status atual for o mesmo que o novo, remova o status
-      updateStatus(book.id, currentUser.id, "none"); // ou crie uma action para remover
+      updateStatus(book.id, currentUser.id, "none");
     } else {
       updateStatus(book.id, currentUser.id, newStatus);
     }

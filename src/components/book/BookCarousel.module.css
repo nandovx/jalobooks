@@ -1,0 +1,26 @@
+@import "../../styles/variables.css";
+
+.carouselContainer {
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  margin-bottom: var(--spacing-md);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  scrollbar-width: thin;
+}
+
+.carouselItem {
+  flex: 0 0 auto;
+  width: 200px;
+}
+
+.noBooks {
+  color: var(--text-light);
+}

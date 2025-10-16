@@ -11,31 +11,9 @@ export interface Book {
   formats: Format;
   summaries?: string[];
 
-  // Disponibilidade global
   borrowed: boolean;
   borrowedAt?: string;
   dueDate?: string;
-}
-
-export interface Loan {
-  bookId: number;
-  userId: string;
-  borrowedAt: string;
-  dueDate: string;
-  returnedAt?: string;
-  returned: boolean;
-}
-
-export interface Reservation {
-  bookId: number;
-  userId: string;
-  reservedAt: string;
-}
-
-export interface UserReadingStatus {
-  userId: string;
-  bookId: number;
-  status: "reading" | "completed" | "wishlist";
 }
 
 export interface Person {
@@ -46,11 +24,4 @@ export interface Person {
 
 export interface Format {
   [mimeType: string]: string;
-}
-
-export interface User {
-  id: string;
-  username: string;
-  password: string;
-  createdAt: string;
 }

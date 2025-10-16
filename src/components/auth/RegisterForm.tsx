@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks"; // Novo hook
-import { loginSuccess } from "../../store/userSlice"; // Nova action
+import { useAppDispatch } from "../../store/hooks";
+import { loginSuccess } from "../../store/userSlice";
+import { auth } from "../../services/authService";
 import styles from "./RegisterForm.module.css";
-import type { User } from "../../types";
 
 interface RegisterFormData {
   username: string;
@@ -18,7 +18,7 @@ const RegisterForm: React.FC = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState<string | null>(null);
-  const dispatch = useAppDispatch(); // Novo dispatch
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,31 +30,21 @@ const RegisterForm: React.FC = () => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      setError("As senhas não coincidem");
+      setError("Passwords do not match");
       return;
     }
 
-    const storedUsers = localStorage.getItem("users");
-    const users: User[] = storedUsers ? JSON.parse(storedUsers) : [];
-
-    if (users.some((u) => u.username === formData.username)) {
-      setError("Usuário já existe");
-      return;
-    }
-
-    const newUser: User = {
-      id: Date.now().toString(),
+    const user = auth.register({
       username: formData.username,
       password: formData.password,
-      createdAt: new Date().toISOString(),
-    };
+    });
 
-    const updatedUsers = [...users, newUser];
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    dispatch(loginSuccess(newUser)); // Despacha a action de login
-    navigate("/");
+    if (user) {
+      dispatch(loginSuccess(user));
+      navigate("/");
+    } else {
+      setError("User already exists");
+    }
   };
 
   return (
@@ -62,7 +52,7 @@ const RegisterForm: React.FC = () => {
       <h2>Registro</h2>
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.inputGroup}>
-        <label htmlFor="username">Usuário</label>
+        <label htmlFor="username">User</label>
         <input
           id="username"
           name="username"
@@ -73,7 +63,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className={styles.inputGroup}>
-        <label htmlFor="password">Senha</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           name="password"
@@ -84,7 +74,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <div className={styles.inputGroup}>
-        <label htmlFor="confirmPassword">Confirmar Senha</label>
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           id="confirmPassword"
           name="confirmPassword"
@@ -95,7 +85,7 @@ const RegisterForm: React.FC = () => {
         />
       </div>
       <button type="submit" className={styles.button}>
-        Registrar
+        Register
       </button>
     </form>
   );

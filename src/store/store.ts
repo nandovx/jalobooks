@@ -4,12 +4,12 @@ import storage from "redux-persist/lib/storage";
 import bookReducer from "./bookSlice";
 import userReducer from "./userSlice";
 import loanReducer from "./loanSlice";
-import userBooksReducer from "./userBooksSlice"; // Novo slice
+import userBooksReducer from "./userBooksSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "books"], // Adicione "books" se quiser persistir também
+  whitelist: ["user", "books"],
 };
 
 const persistedReducer = persistReducer(persistConfig, userReducer);
@@ -19,7 +19,7 @@ export const store = configureStore({
     books: bookReducer,
     user: persistedReducer,
     loans: loanReducer,
-    userBooks: userBooksReducer, // Adicione o novo slice
+    userBooks: userBooksReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
