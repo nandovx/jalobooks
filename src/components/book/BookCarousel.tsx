@@ -24,7 +24,9 @@ const BookCarousel: React.FC<Props> = ({
           {IconComponent && <IconComponent className={styles.titleIcon} />}
           {title}
         </h2>
-        <p className={styles.noBooks}>Any books here {":("}.</p>
+        <p className={styles.noBooks}>
+          Any books here. {""} {":("}
+        </p>
       </div>
     );
   }
