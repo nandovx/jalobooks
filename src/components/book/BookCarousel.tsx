@@ -24,9 +24,7 @@ const BookCarousel: React.FC<Props> = ({ books, context, title }) => {
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.carousel}>
         {books.map((book) => (
-          <div key={book.id} className={styles.carouselItem}>
-            <BookCard book={book} context={context} />
-          </div>
+          <BookCard book={book} context={context} />
         ))}
       </div>
     </div>

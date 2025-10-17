@@ -5,7 +5,7 @@ import { updateBook } from "../../store/bookSlice";
 import { useUserLoans } from "../../hooks/useUserLoans";
 import { useUserReservations } from "../../hooks/useUserReservations";
 import { useUserReadingStatus } from "../../hooks/useUserReadingStatus";
-import type { Book } from "../../types/book"
+import type { Book } from "../../types/book";
 import styles from "./BookCard.module.css";
 
 interface Props {
@@ -50,17 +50,21 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
 
   return (
     <div className={styles.card}>
-      <img src={image} alt={title} className={styles.image} />
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.author}>{authors}</p>
+      <Link to={`/book/${book.id}`} className={styles.linkArea}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.author}>{authors}</p>
+        <div className={styles.imageContainer}>
+          <img src={image} alt={title} className={styles.image} />
+        </div>
+      </Link>
 
       <Link to={`/book/${book.id}`} className={styles.link}>
-        Ver detalhes
+        See Details
       </Link>
 
       {context === "loan" && (
         <button onClick={handleReturn} className={styles.returnButton}>
-          Devolver
+          Return
         </button>
       )}
       {context === "reservation" && (
@@ -68,7 +72,7 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
           onClick={handleCancelReservation}
           className={styles.cancelButton}
         >
-          Cancelar Reserva
+          Cancel Reservation
         </button>
       )}
       {context === "wishlist" && (
@@ -76,7 +80,7 @@ const BookCard: React.FC<Props> = ({ book, context }) => {
           onClick={handleRemoveFromWishlist}
           className={styles.removeButton}
         >
-          Remover
+          Remove
         </button>
       )}
     </div>

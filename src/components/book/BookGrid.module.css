@@ -1,15 +1,26 @@
 @import "../../styles/variables.css";
 
 .gridContainer {
+  padding-top: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
 }
 
 .title {
-  margin-bottom: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+  width: fit-content;
+}
+
+.titleContainer {
+  margin-top: var(--spacing-xl);
+  border-bottom: var(--border-width) solid var(--border-color);
+  margin-bottom: var(--spacing-xl);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
   gap: var(--spacing-lg);
 }

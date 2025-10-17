@@ -23,12 +23,25 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
-        <img
-          src={"/src/assets/icon.png"}
-          alt="Logo da Biblioteca"
-          className={styles.logo}
-        />
-        <h1>BookJalo</h1>
+        <Link
+          to="/"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "0.3rem",
+          }}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <img
+            src={"/src/assets/icon.png"}
+            alt="Logo da Biblioteca"
+            className={styles.logo}
+          />
+
+          <h1>BookJalo</h1>
+        </Link>
       </div>
 
       {/* Botão do Menu Hambúrguer */}
@@ -43,25 +56,43 @@ const Header = () => {
 
       {/* Menu Móvel */}
       <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ""}`}>
-        <Link to="/" onClick={() => setIsMenuOpen(false)}>
-          <FaHome /> Home
+        <Link
+          to="/"
+          className={styles.mobButton}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <FaHome className={styles.icon} /> Home
         </Link>
 
         {isAuthenticated ? (
           <>
-            <Link to="/perfil" onClick={() => setIsMenuOpen(false)}>
-              <FaUser /> Perfil
+            <Link
+              to="/perfil"
+              className={styles.mobButton}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FaUser className={styles.icon} /> Perfil
             </Link>
 
-            <button onClick={handleLogout}>Logout</button>
+            <button className={styles.logoutButton} onClick={handleLogout}>
+              Logout
+            </button>
           </>
         ) : (
           <>
-            <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-              <FaUser /> Login
+            <Link
+              to="/login"
+              className={styles.mobButton}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FaUser className={styles.icon} /> Login
             </Link>
-            <Link to="/register" onClick={() => setIsMenuOpen(false)}>
-              <FaUserPlus /> Register
+            <Link
+              to="/register"
+              className={styles.mobButton}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FaUserPlus className={styles.icon} /> Register
             </Link>
           </>
         )}
@@ -69,14 +100,26 @@ const Header = () => {
 
       {/* Menu Desktop (oculto em mobile) */}
       <div className={styles.navigationBar}>
-        <Link to="/">Home</Link>
+        <Link to="/" className={styles.navButton}>
+          <FaHome className={styles.icon} />
+          Home
+        </Link>
 
-        {isAuthenticated ? <Link to="/perfil">Perfil</Link> : ""}
+        {isAuthenticated ? (
+          <Link to="/perfil" className={styles.navButton}>
+            <FaUser className={styles.icon} />
+            Perfil
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
 
       <div className={styles.loginWrapper}>
         {isAuthenticated ? (
-          <button onClick={handleLogout}>Logout</button>
+          <button className={styles.logoutButton} onClick={handleLogout}>
+            Logout
+          </button>
         ) : (
           <>
             <Link to="/login" className={styles.loginButton}>

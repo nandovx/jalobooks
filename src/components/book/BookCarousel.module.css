@@ -16,11 +16,6 @@
   scrollbar-width: thin;
 }
 
-.carouselItem {
-  flex: 0 0 auto;
-  width: 200px;
-}
-
 .noBooks {
   color: var(--text-light);
 }

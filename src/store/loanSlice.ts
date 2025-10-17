@@ -1,6 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { loanService } from "../services/loanService";
-import type { Loan, Reservation, UserReadingStatus } from "../types/user";
+import type { Loan } from "../types/loan";
+import type { Reservation } from "../types/reservation";
+import type { UserReadingStatus } from "../types/userReadingStatus";
 
 interface LoanState {
   loans: Loan[];

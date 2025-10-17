@@ -12,40 +12,59 @@ const BookDetail = () => {
 
   useEffect(() => {}, [book, dispatch]);
 
-  if (!book) return <p>Carregando...</p>;
+  if (!book) return <p>Loading...</p>;
 
   const description = book.summaries?.[0] || "Nenhuma descrição disponível.";
   const genre =
     book.subjects.slice(0, 3).join(", ") || "Gênero não especificado.";
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      <h1>{book.title}</h1>
+    <div
+      style={{
+        padding: "20px",
+        maxWidth: "800px",
+        margin: "0 auto",
+        marginBottom: "1rem",
+      }}
+    >
+      <h1
+        style={{
+          borderBottom: "2px solid var(--border-color)",
+        }}
+      >
+        {book.title}
+      </h1>
       <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
-        <img
-          src={
-            book.formats["image/jpeg"] ||
-            book.formats["image/png"] ||
-            "https://placehold.co/128"
-          }
-          alt={book.title}
-          style={{ width: "200px", height: "auto", borderRadius: "8px" }}
-        />
-        <div>
-          <p>
-            <strong>Autores:</strong>{" "}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src={
+              book.formats["image/jpeg"] ||
+              book.formats["image/png"] ||
+              "https://placehold.co/128"
+            }
+            alt={book.title}
+            style={{ width: "200px", height: "auto", borderRadius: "8px" }}
+          />
+        </div>
+        <div style={{ padding: "30px" }}>
+          <p style={{ display: "flex", flexDirection: "column" }}>
+            <strong>Authors:</strong>{" "}
             {book.authors.map((a) => a.name).join(", ")}
           </p>
-          <p>
-            <strong>Idiomas:</strong> {book.languages.join(", ")}
+          <p style={{ display: "flex", flexDirection: "column" }}>
+            <strong>Language:</strong> {book.languages.join(", ")}
           </p>
-          <p>
+          <p style={{ display: "flex", flexDirection: "column" }}>
             <strong>Assuntos (Gênero):</strong> {genre}
           </p>
-          <p>
-            <strong>Downloads:</strong> {book.download_count}
-          </p>
-          <p>
+
+          <p style={{ display: "flex", flexDirection: "column" }}>
             <strong>Status de Disponibilidade:</strong>{" "}
             {book.borrowed ? "Indisponível" : "Disponível"}
           </p>

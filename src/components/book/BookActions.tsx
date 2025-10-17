@@ -123,17 +123,17 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
     <div className={styles.actions}>
       {!book.borrowed && !userReservation && !userLoan && (
         <button onClick={handleBorrow} className={styles.borrowButton}>
-          Emprestar
+          Borrow
         </button>
       )}
       {userLoan && (
         <button onClick={handleReturn} className={styles.returnButton}>
-          Devolver
+          Return
         </button>
       )}
       {book.borrowed && !userReservation && !userLoan && (
         <button onClick={handleReserve} className={styles.reserveButton}>
-          Reservar
+          Reserve
         </button>
       )}
       {userReservation && (
@@ -141,12 +141,12 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
           onClick={handleCancelReservation}
           className={styles.cancelButton}
         >
-          Cancelar Reserva
+          Cancel Reservation
         </button>
       )}
       {userLoan && (
         <div className={styles.statusDropdown}>
-          <label htmlFor="readingStatus">Status de Leitura:</label>
+          <label htmlFor="readingStatus">Reading Status:</label>
           <select
             id="readingStatus"
             value={currentReadingStatus || ""}
@@ -155,9 +155,9 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
               if (value) handleReadingStatus(value);
             }}
           >
-            <option value="">Selecione...</option>
-            <option value="reading">Lendo</option>
-            <option value="completed">Concluído</option>
+            <option value="">Select...</option>
+            <option value="reading">Reading</option>
+            <option value="completed">Completed</option>
           </select>
         </div>
       )}
@@ -166,7 +166,7 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
           onClick={() => handleReadingStatus("wishlist")}
           className={styles.wishlistButton}
         >
-          Adicionar à Lista de Desejos
+          Add to Wish List
         </button>
       )}
       {!userLoan && currentReadingStatus === "wishlist" && (
@@ -174,7 +174,7 @@ const BookActions: React.FC<BookActionsProps> = ({ bookId }) => {
           onClick={() => handleReadingStatus("wishlist")}
           className={styles.removeWishlistButton}
         >
-          Remover da Lista de Desejos
+          Remove to Wish List
         </button>
       )}
     </div>

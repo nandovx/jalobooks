@@ -1,0 +1,15 @@
+@import "../styles/variables.css";
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg) var(--spacing-lg);
+}
+
+@media (min-width: 1024px) {
+  .page {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg) var(--spacing-xxx);
+  }
+}

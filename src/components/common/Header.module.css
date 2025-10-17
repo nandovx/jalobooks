@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
   background-color: var(--bg-color);
   border-bottom: var(--border-width) solid var(--border-color);
   gap: var(--spacing-md);
@@ -19,13 +21,17 @@
   gap: var(--spacing-sm);
 }
 
+.logoContainer:hover {
+  transform: translateY(-2px);
+}
+
 .logo {
   width: 50px;
   height: auto;
 }
 
 h1 {
-  margin: 0;
+  margin-top: 17.5px;
   font-size: var(--font-size-xl);
   color: var(--text-color);
 }
@@ -43,20 +49,59 @@ h1 {
   align-items: center;
 }
 
+.logoutButton {
+  text-decoration: underline;
+}
+
+.logoutButton:hover {
+  color: var(--color-primary-3);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mobButton {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: var(--spacing-xs);
+}
+
+.icon {
+  width: var(--font-size-large);
+  aspect-ratio: 1/1;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: var(--spacing-xs);
+}
+
+.navButton:hover {
+  color: var(--color-primary-3);
+  transform: translateY(-2px);
+}
+
 .loginButton,
 .registerButton {
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--border-color);
   background-color: white;
   cursor: pointer;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-sm);
   color: var(--text-color);
 }
 
 .registerButton {
   color: var(--color-primary-2);
 }
-
+.loginButton:hover,
+.registerButton:hover {
+  color: var(--color-primary-3);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 .hamburger {
   display: none;
   flex-direction: column;
@@ -123,5 +168,12 @@ h1 {
 
   .hamburger {
     display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding-left: var(--spacing-xxx);
+    padding-right: var(--spacing-xxx);
   }
 }

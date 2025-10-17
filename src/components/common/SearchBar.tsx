@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./SearchBar.module.css";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 interface SearchBarProps {
   query: string;
@@ -21,18 +22,29 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery }) => {
   };
 
   return (
-    <div className={styles.searchContainer}>
-      <input
-        type="text"
-        placeholder="Search books..."
-        value={inputValue}
-        onChange={handleInputChange}
-        aria-label="Search for books"
-        className={styles.searchInput}
-      />
-      <button onClick={handleSearch} className={styles.searchButton}>
-        Search
-      </button>
+    <div className={styles.container}>
+      <div className={styles.titleContainer}>
+        <Link to="/search" className={styles.mobButton}>
+          <h1 className={styles.title}>
+            <FaMagnifyingGlass />
+            Searching any book?
+          </h1>
+        </Link>
+      </div>
+
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search books..."
+          value={inputValue}
+          onChange={handleInputChange}
+          aria-label="Search for books"
+          className={styles.searchInput}
+        />
+        <button onClick={handleSearch} className={styles.searchButton}>
+          Search
+        </button>
+      </div>
     </div>
   );
 };

@@ -11,7 +11,9 @@ interface BookGridProps {
 const BookGrid: React.FC<BookGridProps> = ({ title, books }) => {
   return (
     <section className={styles.gridContainer}>
-      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>{title}</h2>
+      </div>
       <div className={styles.grid}>
         {books.map((book) => (
           <BookCard key={book.id} book={book} />

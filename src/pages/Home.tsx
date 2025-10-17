@@ -1,7 +1,7 @@
-import React from "react";
 import SearchBar from "../components/common/SearchBar";
 import BookGrid from "../components/book/BookGrid";
 import { useBookSearch } from "../hooks/useBookSearch";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const { query, setQuery, books } = useBookSearch();
@@ -12,10 +12,8 @@ const Home = () => {
   );
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 style={{ marginBottom: "1rem" }}>Searching any book?</h1>
+    <div className={styles.page}>
       <SearchBar query={query} setQuery={setQuery} />
-
       <BookGrid title="Popular Books" books={recentBooks} />
       <BookGrid title="Books (A-Z)" books={alphabeticalBooks} />
     </div>

@@ -82,8 +82,7 @@ export const selectWishlistBooks = createSelector(
     if (!userId) return [];
     return books.filter((book) =>
       status.some(
-        (s: UserReadingStatus) =>
-          s.bookId === book.id && s.userId === userId && s.status === "wishlist"
+        (s: UserReadingStatus) => s.bookId === book.id && s.userId === userId
       )
     );
   }
