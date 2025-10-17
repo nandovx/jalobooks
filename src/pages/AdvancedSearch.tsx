@@ -123,17 +123,6 @@ const AdvancedSearch = () => {
         </button>
       </section>
 
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          navigate("/");
-        }}
-        className={styles.backButton}
-      >
-        ← Back to Home
-      </a>
-
       <section className={styles.resultsSection}>
         <BookGrid title="Search Results" books={sortedBooks} />
       </section>
