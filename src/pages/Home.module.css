@@ -1,15 +1,9 @@
 @import "../styles/variables.css";
 
 .page {
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-lg) var(--spacing-lg);
-}
-
-@media (min-width: 1024px) {
-  .page {
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-lg) var(--spacing-xxx);
-  }
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }

@@ -3,24 +3,31 @@
 .gridContainer {
   padding-top: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
+  background-color: var(--color-secondary-1);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md);
 }
 
 .title {
   display: flex;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
   color: var(--text-color);
   width: fit-content;
+  align-items: center;
 }
 
 .titleContainer {
-  margin-top: var(--spacing-xl);
   border-bottom: var(--border-width) solid var(--border-color);
   margin-bottom: var(--spacing-xl);
 }
 
 .grid {
+  padding: var(--spacing-md);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(249px, 2fr));
   gap: var(--spacing-lg);
+  justify-items: center;
 }

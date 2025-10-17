@@ -8,7 +8,7 @@
   background-color: var(--color-secondary-1);
   position: relative;
   cursor: pointer;
-  box-shadow: var(--shadow);
+
   width: 200px;
   transition: color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   margin: var(--spacing-sm);

@@ -2,27 +2,31 @@
 
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: var(--spacing-md);
-  padding-left: var(--spacing-lg);
-  padding-right: var(--spacing-lg);
-  background-color: var(--bg-color);
+  background-color: var(--color-secondary-1);
   border-bottom: var(--border-width) solid var(--border-color);
-  gap: var(--spacing-md);
   flex-wrap: wrap;
   position: relative;
   color: var(--text-color);
+  justify-content: center;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-}
-
-.logoContainer:hover {
-  transform: translateY(-2px);
 }
 
 .logo {
@@ -41,6 +45,7 @@ h1 {
   gap: var(--spacing-lg);
   align-items: center;
   text-decoration: none;
+  align-self: center;
 }
 
 .loginWrapper {
@@ -50,13 +55,36 @@ h1 {
 }
 
 .logoutButton {
+  border-top: var(--border-width) solid var(--border-color);
+  padding-top: var(--spacing-md);
+  padding-bottom: 0;
+  margin-top: var(--spacing-md);
+  border-radius: 0;
   text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+  .logoutButton {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 770px) {
+  .logoutButton {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .logoutButton:hover {
   color: var(--color-primary-3);
   transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 0;
 }
 
 .mobButton {
@@ -139,7 +167,7 @@ h1 {
   background-color: var(--bg-color);
   flex-direction: column;
   padding: var(--spacing-md);
-  gap: var(--spacing-sm);
+  gap: var(--spacing-lg);
   box-shadow: var(--shadow);
   z-index: 1000;
   animation: slideDown 0.3s ease;
@@ -168,12 +196,5 @@ h1 {
 
   .hamburger {
     display: flex;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header {
-    padding-left: var(--spacing-xxx);
-    padding-right: var(--spacing-xxx);
   }
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
 import BookGrid from "../components/book/BookGrid";
+import styles from "./AdvancedSearch.module.css";
 
 const AdvancedSearch = () => {
   const [searchParams] = useSearchParams();
@@ -57,69 +58,85 @@ const AdvancedSearch = () => {
   }, [initialQuery]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Advanced Search</h1>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Advanced Search</h1>
+      </header>
 
-      <div style={{ marginBottom: "20px" }}>
-        <input
-          type="text"
-          placeholder="Search by title or author..."
-          value={filters.query}
-          onChange={(e) => setFilters({ ...filters, query: e.target.value })}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
-        <button onClick={handleSearch} style={{ marginBottom: "10px" }}>
-          Search
+      <section className={styles.filtersSection}>
+        <h2>Filters</h2>
+        <div className={styles.inputGroup}>
+          <label htmlFor="searchQuery">Search Query</label>
+          <input
+            id="searchQuery"
+            type="text"
+            placeholder="Search by title or author..."
+            value={filters.query}
+            onChange={(e) => setFilters({ ...filters, query: e.target.value })}
+          />
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label htmlFor="languageFilter">Language</label>
+          <input
+            id="languageFilter"
+            type="text"
+            placeholder="Filter by language (e.g. en, pt)..."
+            value={filters.languages}
+            onChange={(e) =>
+              setFilters({ ...filters, languages: e.target.value })
+            }
+          />
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label htmlFor="topicFilter">Topic</label>
+          <input
+            id="topicFilter"
+            type="text"
+            placeholder="Filter by topic (e.g. fiction, science)..."
+            value={filters.topic}
+            onChange={(e) => setFilters({ ...filters, topic: e.target.value })}
+          />
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label htmlFor="sortOrder">Sort Order</label>
+          <select
+            id="sortOrder"
+            value={filters.sort}
+            onChange={(e) =>
+              setFilters({
+                ...filters,
+                sort: e.target.value as "popular" | "ascending" | "descending",
+              })
+            }
+          >
+            <option value="popular">Sort by Popular</option>
+            <option value="ascending">Sort A-Z</option>
+            <option value="descending">Sort Z-A</option>
+          </select>
+        </div>
+
+        <button className={styles.searchButton} onClick={handleSearch}>
+          Apply Filters & Search
         </button>
+      </section>
 
-        <input
-          type="text"
-          placeholder="Filter by language (e.g. en, pt)..."
-          value={filters.languages}
-          onChange={(e) =>
-            setFilters({ ...filters, languages: e.target.value })
-          }
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
-        <input
-          type="text"
-          placeholder="Filter by topic (e.g. fiction, science)..."
-          value={filters.topic}
-          onChange={(e) => setFilters({ ...filters, topic: e.target.value })}
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        />
-        <select
-          value={filters.sort}
-          onChange={(e) =>
-            setFilters({
-              ...filters,
-              sort: e.target.value as "popular" | "ascending" | "descending",
-            })
-          }
-          style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-        >
-          <option value="popular">Sort by Popular</option>
-          <option value="ascending">Sort A-Z</option>
-          <option value="descending">Sort Z-A</option>
-        </select>
-      </div>
-
-      <button
-        onClick={() => navigate("/")}
-        style={{
-          padding: "10px 15px",
-          backgroundColor: "#6c757d",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          marginBottom: "20px",
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/");
         }}
+        className={styles.backButton}
       >
         ← Back to Home
-      </button>
+      </a>
 
-      <BookGrid title="Search Results" books={sortedBooks} />
+      <section className={styles.resultsSection}>
+        <BookGrid title="Search Results" books={sortedBooks} />
+      </section>
     </div>
   );
 };

@@ -1,11 +1,15 @@
-@import "../../styles/variables.css";
-
 .carouselContainer {
   margin-bottom: var(--spacing-xl);
-}
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-lg);
+  background-color: var(--color-secondary-1);
 
-.title {
-  margin-bottom: var(--spacing-md);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .carousel {
@@ -14,8 +18,17 @@
   gap: var(--spacing-lg);
   padding: var(--spacing-md) 0;
   scrollbar-width: thin;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.noBooks {
-  color: var(--text-light);
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
 }
