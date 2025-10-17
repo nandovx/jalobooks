@@ -37,7 +37,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <img
-              src={"/src/assets/icon.png"}
+              src={"/icon.png"}
               alt="Logo da Biblioteca"
               className={styles.logo}
             />
