@@ -14,10 +14,11 @@
 }
 
 .title {
-  font-size: var(--font-size-xxl);
-  font-weight: 700;
-  color: var(--text-color);
-  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--border-color);
 }
 
 .filtersSection {
