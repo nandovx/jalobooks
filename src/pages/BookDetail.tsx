@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import BookActions from "../components/book/BookActions";
@@ -10,12 +10,7 @@ const BookDetail = () => {
     state.books.items.find((b) => b.id === Number(id))
   );
 
-  useEffect(() => {
-    if (!book) {
-      // Se o livro não estiver no estado, você pode buscar novamente ou lidar com o erro
-      // dispatch(fetchBooks(...)); // opcional
-    }
-  }, [book, dispatch]);
+  useEffect(() => {}, [book, dispatch]);
 
   if (!book) return <p>Carregando...</p>;
 
@@ -67,7 +62,6 @@ const BookDetail = () => {
         <p>{description}</p>
       </div>
       <BookActions bookId={book.id} />{" "}
-      {/* ✅ Certifique-se de que o ID está correto */}
     </div>
   );
 };

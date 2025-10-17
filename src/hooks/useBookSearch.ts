@@ -4,7 +4,7 @@ import type { Book } from "../types/book";
 
 export const useBookSearch = () => {
   const [query, setQuery] = useState("");
-  const books = useAppSelector((state) => state.books.items); // ✅ Pega os livros do Redux
+  const books = useAppSelector((state) => state.books.items);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(books);
 
   useEffect(() => {

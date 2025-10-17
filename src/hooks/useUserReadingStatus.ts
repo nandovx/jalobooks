@@ -13,7 +13,7 @@ export const useUserReadingStatus = () => {
     if (status === "none") {
       dispatch(removeStatus(bookId));
     } else {
-      dispatch(addStatus({ bookId, userId, status })); // Você precisa passar o userId
+      dispatch(addStatus({ bookId, userId, status }));
     }
   };
 

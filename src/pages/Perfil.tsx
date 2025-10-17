@@ -6,6 +6,7 @@ import {
   selectWishlistBooks,
 } from "../store/userBooksSlice";
 import BookCarousel from "../components/book/BookCarousel";
+import { auth } from "../services/authService";
 
 const Perfil = () => {
   const { currentUser } = useAppSelector((state) => state.user);
@@ -24,11 +25,9 @@ const Perfil = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Atualizar dados do usuário (ex: no localStorage ou backend)
     if (currentUser) {
       const updatedUser = { ...currentUser, username: userData.username };
-      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-      // Atualizar estado do Redux (opcional)
+      auth.update(updatedUser);
     }
   };
 
@@ -36,7 +35,6 @@ const Perfil = () => {
     <div style={{ padding: "20px" }}>
       <h1>Perfil</h1>
 
-      {/* Formulário para modificar dados do usuário */}
       <div style={{ marginBottom: "30px" }}>
         <h2>Modificar Dados do Usuário</h2>
         <form onSubmit={handleSubmit}>
@@ -57,7 +55,6 @@ const Perfil = () => {
         </form>
       </div>
 
-      {/* Carrosséis de livros */}
       <BookCarousel
         books={borrowedBooks}
         context="loan"

@@ -48,6 +48,10 @@ export const auth = {
     return null;
   },
 
+  update: (updatedUser: Omit<User, "id" | "createdAt">): void => {
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+  },
+
   logout: () => {
     localStorage.removeItem(CURRENT_USER_KEY);
   },

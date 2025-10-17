@@ -14,7 +14,7 @@ const AdvancedSearch = () => {
     sort: "popular" as "popular" | "ascending" | "descending",
   });
 
-  const books = useAppSelector((state) => state.books.items); // ✅ Pegar livros do Redux
+  const books = useAppSelector((state) => state.books.items);
   const navigate = useNavigate();
 
   const filteredBooks = books.filter((book) => {
@@ -53,7 +53,6 @@ const AdvancedSearch = () => {
   };
 
   useEffect(() => {
-    // Atualiza o input com o termo da URL
     setFilters((prev) => ({ ...prev, query: initialQuery }));
   }, [initialQuery]);
 
