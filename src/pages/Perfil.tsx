@@ -39,22 +39,22 @@ const Perfil = () => {
       <div className={styles.container}>
         {/* Card de edição do usuário */}
         <section className={styles.profileCard}>
-          <h2>Modificar Dados</h2>
+          <h2>Edit User</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
             <fieldset>
               <div className={styles.formGroup}>
-                <label htmlFor="username">Nome de Usuário</label>
+                <label htmlFor="username">Username</label>
                 <input
                   id="username"
                   name="username"
                   type="text"
                   value={userData.username}
                   onChange={handleChange}
-                  placeholder="Digite seu nome"
+                  placeholder="Digit your name"
                 />
               </div>
               <button type="submit" className={styles.saveButton}>
-                Salvar Alterações
+                Save
               </button>
             </fieldset>
           </form>
@@ -65,18 +65,18 @@ const Perfil = () => {
           <BookCarousel
             books={borrowedBooks}
             context="loan"
-            title="Livros Emprestados"
+            title="Loaned Books"
           />
 
           <BookCarousel
             books={reservedBooks}
             context="reservation"
-            title="Livros Reservados"
+            title="Reserved Books"
           />
           <BookCarousel
             books={wishlistBooks}
             context="wishlist"
-            title="Lista de Desejos"
+            title="WishList"
           />
         </section>
       </div>

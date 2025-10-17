@@ -49,7 +49,7 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h2>Registro</h2>
+      <h2>Register</h2>
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.inputGroup}>
         <label htmlFor="username">User</label>
