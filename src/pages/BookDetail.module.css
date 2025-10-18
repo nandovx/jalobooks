@@ -1,0 +1,129 @@
+@import "../styles/variables.css";
+
+.page {
+  padding: var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto var(--spacing-xl);
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.mediaSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  align-items: stretch;
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--color-secondary-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+
+  align-self: stretch;
+}
+
+.coverImage {
+  width: 200px;
+  height: auto;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--color-secondary-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  flex-grow: 1;
+}
+
+.infoTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-weight: bold;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-color);
+}
+
+.infoValue {
+  margin: 0;
+  color: var(--text-light);
+}
+
+.descriptionSection {
+  background-color: var(--color-secondary-1);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.descriptionTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.descriptionText {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.actionsContainer {
+  margin-top: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .mediaSection {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+  }
+
+  .infoSection {
+    flex-grow: 1;
+    align-self: stretch;
+  }
+}
